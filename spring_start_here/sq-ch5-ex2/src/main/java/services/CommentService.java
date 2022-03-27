@@ -8,8 +8,12 @@ import repositories.CommentRepository;
 @Service
 public class CommentService {
 
+    private final CommentRepository commentRepository;
+
     @Autowired
-    private CommentRepository commentRepository;
+    public CommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
     public CommentRepository getCommentRepository() {
         return commentRepository;
