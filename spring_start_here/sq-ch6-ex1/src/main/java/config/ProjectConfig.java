@@ -19,5 +19,4 @@ public class ProjectConfig {
     public LoggingAspect aspect() {
         return new LoggingAspect();
     }
-    
 }
