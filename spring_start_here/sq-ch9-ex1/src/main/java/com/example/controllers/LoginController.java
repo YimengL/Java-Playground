@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import com.example.model.LoginProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class LoginController {
+
+    private final LoginProcessor loginProcessor;
+
+    public LoginController(LoginProcessor loginProcessor) {
+        this.loginProcessor = loginProcessor;
+    }
 
     /**
      * We map the controller's action to the root("/") path of the application.
@@ -33,8 +40,9 @@ public class LoginController {
             @RequestParam String username,
             @RequestParam String password,
             Model model) {
-        // When we later implement the login logic, this variable will store the login request result.
-        boolean loggedIn = false;
+        loginProcessor.setUsername(username);
+        loginProcessor.setPassword(password);
+        boolean loggedIn = loginProcessor.login();
 
         // Depending on the result of the login, we send a specific message to the view.
         if (loggedIn) {
