@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 /**
- * 
+ * We add the {@code @Service} stereotype annotation to instruct Spring to manage this class as a bean in its context.
+ * We use the {@code @SessionScope} annotation to change the scope of the bean to session.
  */
 @Service
 @SessionScope
