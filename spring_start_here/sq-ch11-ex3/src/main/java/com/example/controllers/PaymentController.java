@@ -21,7 +21,7 @@ public class PaymentController {
     }
 
     @PostMapping("/payment")
-    public Mono<Payment> createpayment(@RequestBody Payment payment) {
+    public Mono<Payment> createPayment(@RequestBody Payment payment) {
         String requestId = UUID.randomUUID().toString();
         return paymentsProxy.createPayment(requestId, payment);
     }
