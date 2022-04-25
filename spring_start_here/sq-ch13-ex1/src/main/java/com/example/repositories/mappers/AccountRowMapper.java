@@ -1,4 +1,4 @@
-package com.example.model.mappers;
+package com.example.repositories.mappers;
 
 import com.example.model.Account;
 import org.springframework.jdbc.core.RowMapper;
