@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Locale;
 
 // Tells Spring Boot that this is a REST-based service and it will automatically serialize/deserialize service
 // requests/responses via JSON
@@ -47,8 +50,9 @@ public class LicenseController {
     // Post method to insert a license
     @PostMapping
     public ResponseEntity<String> createLicense(@PathVariable("organizationId") String organizationId,
-                                                @RequestBody License request) {
-        return ResponseEntity.ok(licenseService.createLicense(request, organizationId));
+                                                @RequestBody License request,
+                                                @RequestHeader(value = "Accept-Language", required = false) Locale locale) {
+        return ResponseEntity.ok(licenseService.createLicense(request, organizationId, locale));
     }
 
     // Delete method to delete a license
