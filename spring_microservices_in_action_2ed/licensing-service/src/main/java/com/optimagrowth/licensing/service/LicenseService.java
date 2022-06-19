@@ -55,7 +55,7 @@ public class LicenseService {
 
     public String deleteLicense(String licenseId, String organizationId) {
         String responseMessage = null;
-        responseMessage = String.format("Deleting license with id %s for the organization %s", licenseId,
+        responseMessage = String.format(messages.getMessage("license.delete.message", null, null), licenseId,
                 organizationId);
         return responseMessage;
     }
