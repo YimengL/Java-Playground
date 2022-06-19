@@ -26,10 +26,14 @@ public class LicenseService {
         return license;
     }
 
+    /**
+     * @param locale    Receives the locale as a method parameter.
+     */
     public String createLicense(License license, String organizationId, Locale locale) {
         String responseMessage = null;
         if (license != null) {
             license.setOrganizationId(organizationId);
+            // Sets the received locale to retrieve the specific message
             responseMessage = String.format(messages.getMessage("license.create.message", null, locale),
                     license.toString());
         }
@@ -41,7 +45,9 @@ public class LicenseService {
         String responseMessage = null;
         if (license != null) {
             license.setOrganizationId(organizationId);
-            responseMessage = String.format("This is the put and the object is: %s", license.toString());
+            // Sends a null locale to retrieve specific message
+            responseMessage = String.format(messages.getMessage("license.update.message", null, null),
+                            license.toString());
         }
 
         return responseMessage;
