@@ -19,5 +19,8 @@ $ ./mvnw spring-boot:build-image
 $ docker run -it -p 8080:8080 docker.io/library/licensing-service:0.0.1-SNAPSHOT
 ```
 
-### 
+### Run docker-compose
+```shell
+$ docker-compose up
+```
 
