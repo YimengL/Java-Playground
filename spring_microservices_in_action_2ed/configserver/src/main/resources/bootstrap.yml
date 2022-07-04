@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native # Sets the Spring profile associated with the backend repository (filesystem)
+  cloud:
+    config:
+      server:
+      # Local configuration: This locations can either of classpath or locations in the filesystem
+        native:
+          # Reads from a specific filesystem folder
+          search-locations:
+            classpath:/config
+
+server:
+  port: 8071
+
+#Enable all Spring Boot Actuator endpoints.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
