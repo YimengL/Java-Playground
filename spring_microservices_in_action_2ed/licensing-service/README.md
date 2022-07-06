@@ -3,6 +3,11 @@
 $ mvn clean package
 ```
 
+### Run
+```shell
+$ mvn spring-boot:run
+```
+
 ### Build docker image
 ```shell
 $ mvn package dockerfile:build
