@@ -1,0 +1,18 @@
+spring:
+  application:
+    # The Config Server application name (in this case, config-server)
+    name: config-server
+  profiles:
+    active: native # Sets the Spring profile associated with the backend repository (filesystem)
+
+  cloud:
+    config:
+      server:
+        # Local configuration: This locations can either of classpath or locations in the filesystem
+        native:
+          # Sets the search location where the configuration files are stored
+          search-locations: classpath:/config
+
+server:
+  # The server port
+  port: 8071
