@@ -4,6 +4,12 @@ $ mvn clean package
 ```
 
 ### Run
+
+Prerequisite: need to up & run postgres
+```shell
+$ brew services restart postgresql
+```
+
 ```shell
 $ mvn spring-boot:run
 ```
