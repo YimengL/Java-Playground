@@ -6,7 +6,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "123456"
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: "ostock_dev"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
@@ -25,6 +25,8 @@ services:
     image: rocklee1108/configserver:0.0.1-SNAPSHOT
     ports:
       - "8071:8071"
+    environment:
+      ENCRYPT_KEY: ${ENCRYPT_KEY}
     networks:
       backend:
         aliases:
