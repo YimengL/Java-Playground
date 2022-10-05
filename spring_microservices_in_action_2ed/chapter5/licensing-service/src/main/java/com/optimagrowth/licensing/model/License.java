@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Getter @Setter @ToString
 @Entity // Tells Spring that this is a JPA class
-@Table(name = "license") // Map to the database table
+@Table(name = "licenses") // Map to the database table
 public class License extends RepresentationModel<License> {
 
     @Id // Marks this field as a primary key
