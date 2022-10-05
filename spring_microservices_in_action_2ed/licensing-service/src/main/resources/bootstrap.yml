@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: licensing-service
-  profile:
-    active: dev
-  cloud:
-    config:
-      uri: http://localhost:8071
