@@ -13,7 +13,7 @@ $ cd licensing-service
 $ mvn package dockerfile:build
 ```
 
-### Run Docker
+### 3. Run Docker
 
 ```shell
 $ cd docker
