@@ -22,6 +22,12 @@
 		<docker.image.prefix>rocklee1108</docker.image.prefix>
 	</properties>
 
+	<modules>
+		<module>configserver</module>
+		<module>licensing-service</module>
+		<module>organization-service</module>
+	</modules>
+
 	<build>
 		<plugins>
 			<!-- This plugin is used to create a docker image and publish it to Docker hub-->
