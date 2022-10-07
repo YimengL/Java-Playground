@@ -29,6 +29,7 @@ $ psql -U postgres # enter DB
 $ \l # list db
 $ \c ostock_dev # go to ostock_dev db
 $ select * from licenses; # or any other SQL query
+$ \q # leave db
 ```
 
 ### Stop the Docker
