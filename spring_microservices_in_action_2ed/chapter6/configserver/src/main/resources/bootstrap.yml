@@ -16,7 +16,7 @@ spring:
 #          search-locations: classpath:/config
         git:
           uri: https://github.com/YimengL/config.git
-          searchPaths: licensingservice
+          # searchPaths: licensingservice
 
 server:
   # The server port
