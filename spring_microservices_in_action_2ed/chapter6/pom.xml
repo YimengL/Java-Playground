@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.optimagrowth</groupId>
-	<artifactId>licensing-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>ostock-parent-pom</artifactId>
+	<version>0.6.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>optimagrowth-parent-pom</name>
