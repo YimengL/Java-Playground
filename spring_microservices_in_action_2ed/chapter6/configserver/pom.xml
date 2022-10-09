@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.optimagrowth</groupId>
 	<artifactId>configserver</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.6.1-SNAPSHOT</version>
 	<name>Configuration Server</name>
 	<description>Configuration Server</description>
 	<properties>
