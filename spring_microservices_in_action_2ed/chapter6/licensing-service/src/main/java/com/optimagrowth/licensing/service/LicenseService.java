@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
@@ -83,5 +84,9 @@ public class LicenseService {
         responseMessage = String.format(messages.getMessage("license.delete.message", null, null),
                 licenseId);
         return responseMessage;
+    }
+
+    public List<License> getLicensesByOrganization(String organizationId) {
+        return licenseRepository.findByOrganizationId(organizationId);
     }
 }
