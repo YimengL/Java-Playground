@@ -1,19 +1,11 @@
 ## HOW to Run
 
-### 1. Build `configserver`
+### 1. Build all (configserver, licensing-service, organization-service)
 ```shell
-$ cd configserver
-$ mvn package dockerfile:build
+$ mvn package dockerfile:build # in root directory
 ```
 
-### 2. Build `licensing-service`
-
-```shell
-$ cd licensing-service
-$ mvn package dockerfile:build
-```
-
-### 3. Run Docker
+### 2. Run Docker
 
 ```shell
 $ cd docker
