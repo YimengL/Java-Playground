@@ -1,0 +1,12 @@
+spring:
+  application:
+    # Specifies the name of the licensing service so that Spring Cloud Config client knows which service is being
+    # looked up
+    name: licensing-service # Logical name of the service that will be registered with Eureka
+  profiles:
+    # Specifies the default profile the service should run. The profile maps to an environment.
+    active: dev
+  cloud:
+    config:
+      # Specifies the location of the Spring Cloud Config Server
+      uri: http://configserver:8071
