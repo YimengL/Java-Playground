@@ -39,6 +39,7 @@ public class LicensingServiceApplication {
 		return messageSource;
 	}
 
+	@LoadBalanced
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();

@@ -16,7 +16,8 @@ public class OrganizationRestTemplateClient {
     public Organization getOrganization(String organizationId) {
         ResponseEntity<Organization> restExchange =
                 restTemplate.exchange(
-                        "http://organizationservice:8081/v1/organization/{organizationId}",
+                        // When using a Load Balancer-backed RestTemplate, builds the target URL with Eureka service ID
+                        "http://organization-service/v1/organization/{organizationId}",
                         HttpMethod.GET,
                         null, Organization.class, organizationId);
 
