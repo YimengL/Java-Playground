@@ -1,6 +1,6 @@
 spring:
   application:
-    name: organization-service
+    name: organization-service # Logical name of the service that will be registered with Eureka
   profiles:
     active: dev
   cloud:
