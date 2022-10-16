@@ -44,6 +44,10 @@ public class LicenseController {
         return ResponseEntity.ok(license);
     }
 
+    /**
+     *
+     * @param clientType  determines the type of Spring REST client to use
+     */
     @RequestMapping(value = "/{licenseId}/{clientType}", method = RequestMethod.GET)
     public License getLicensesWithClient(@PathVariable("organizationId") String organizationId,
                                          @PathVariable("licenseId") String licenseId,
