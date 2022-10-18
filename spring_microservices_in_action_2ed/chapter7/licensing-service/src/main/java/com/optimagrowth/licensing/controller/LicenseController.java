@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeoutException;
 
 // Tells Spring Boot that this is a REST-based service and it will automatically serialize/deserialize service
 // requests/responses via JSON
@@ -75,7 +76,7 @@ public class LicenseController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<License> getLicenses(@PathVariable("organizationId") String organizationId) {
+    public List<License> getLicenses(@PathVariable("organizationId") String organizationId) throws TimeoutException {
         return licenseService.getLicensesByOrganization(organizationId);
     }
 }

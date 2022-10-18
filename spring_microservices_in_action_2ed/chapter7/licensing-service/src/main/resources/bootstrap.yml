@@ -10,3 +10,11 @@ spring:
     config:
       # Specifies the location of the Spring Cloud Config Server
       uri: http://configserver:8071
+
+resilience4j.circuitbreaker:
+  instances:
+    licenseService:
+      registerHealthIndicator: true
+      ringBufferSizeInClosedState: 5
+      ringBufferSizeInHalfOpenState: 3
+      failureRateThreshold: 20

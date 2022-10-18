@@ -7,6 +7,9 @@ import com.optimagrowth.licensing.repository.LicenseRepository;
 import com.optimagrowth.licensing.service.client.OrganizationDiscoveryClient;
 import com.optimagrowth.licensing.service.client.OrganizationFeignClient;
 import com.optimagrowth.licensing.service.client.OrganizationRestTemplateClient;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeoutException;
 
 @Service
 public class LicenseService {
@@ -36,6 +40,8 @@ public class LicenseService {
 
     @Autowired
     OrganizationDiscoveryClient organizationDiscoveryClient;
+
+    private static final Logger logger = LoggerFactory.getLogger(LicenseService.class);
 
     private Organization retrieveOrganizationInfo(String organizationId, String clientType) {
         Organization organization = null;
@@ -103,7 +109,33 @@ public class LicenseService {
         return responseMessage;
     }
 
-    public List<License> getLicensesByOrganization(String organizationId) {
+    @CircuitBreaker(name = "licenseService")
+    public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
+        randomlyRunLong();
         return licenseRepository.findByOrganizationId(organizationId);
+    }
+
+    /**
+     * Give us a one-in-three chance of a database call running long.
+     */
+    private void randomlyRunLong() throws TimeoutException {
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(3) + 1;
+        if (randomNumber == 3) {
+            sleep();
+        }
+    }
+
+    /**
+     * Sleeps for 5000ms and then throws a {@link TimeoutException}
+     */
+    private void sleep() throws TimeoutException {
+        try {
+            System.out.println("Sleep");
+            Thread.sleep(5000);
+            throw new TimeoutException();
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+        }
     }
 }
