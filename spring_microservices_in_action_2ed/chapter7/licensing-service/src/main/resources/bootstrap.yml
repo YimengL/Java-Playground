@@ -13,8 +13,21 @@ spring:
 
 resilience4j.circuitbreaker:
   instances:
+    # Licensing service instance configuration. (The name given to the circuit breaker in the annotation.)
     licenseService:
+      # Indicates whether to expose the configuration over the health endpoint
       registerHealthIndicator: true
+      # Sets the ring buffer size at the closed state
       ringBufferSizeInClosedState: 5
+      # Set the ring buffer size in the half-open state
       ringBufferSizeInHalfOpenState: 3
-      failureRateThreshold: 20
+      # Sets the wait duration for the open state
+      waitDurationInOpenState: 10s
+      # Sets the failure rate threshold percentage
+      failureRateThreshold: 50
+      # Sets the exceptions that should be recorded as failures
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+        - java.util.concurrent.TimeoutException
+        - org.springframework.web.client.ResourceAccessException
