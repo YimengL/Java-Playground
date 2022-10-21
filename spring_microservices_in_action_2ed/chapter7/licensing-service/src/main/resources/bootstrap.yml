@@ -31,3 +31,16 @@ resilience4j.circuitbreaker:
         - java.io.IOException
         - java.util.concurrent.TimeoutException
         - org.springframework.web.client.ResourceAccessException
+
+resilience4j.bulkhead:
+  instances:
+    bulkheadLicenseService:
+      maxWaitDuration: 10ms # The maximum amount of time to block a thread
+      maxConcurrentCalls: 20 # The maximum number of concurrent calls
+
+resilience4j.thread-pool-bulkhead:
+  instances:
+    bulkheadLicenseService:
+      maxThreadPoolSize: 1 # The maximum number of threads in the thread pool
+      coreThreadPoolSize: 1 # The core thread pool size
+      queueCapacity: 1 # The queue's capacity

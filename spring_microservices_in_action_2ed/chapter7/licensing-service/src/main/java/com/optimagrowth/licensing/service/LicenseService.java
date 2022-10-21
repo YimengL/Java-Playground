@@ -7,6 +7,7 @@ import com.optimagrowth.licensing.repository.LicenseRepository;
 import com.optimagrowth.licensing.service.client.OrganizationDiscoveryClient;
 import com.optimagrowth.licensing.service.client.OrganizationFeignClient;
 import com.optimagrowth.licensing.service.client.OrganizationRestTemplateClient;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,6 +108,8 @@ public class LicenseService {
     }
 
     @CircuitBreaker(name = "licenseService", fallbackMethod = "buildFallbackLicenseList")
+    @Bulkhead(name = "bulkheadLicenseService", type = Bulkhead.Type.THREADPOOL,
+            fallbackMethod = "buildFallbackLicenseList")
     public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
         randomlyRunLong();
         return licenseRepository.findByOrganizationId(organizationId);
