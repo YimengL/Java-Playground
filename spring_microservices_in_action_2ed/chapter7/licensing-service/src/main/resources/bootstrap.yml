@@ -32,6 +32,14 @@ resilience4j.circuitbreaker:
         - java.util.concurrent.TimeoutException
         - org.springframework.web.client.ResourceAccessException
 
+resilience4j.retry:
+  instances:
+    retryLicenseService:
+      maxRetryAttempts: 5 # The maximum number of retry attempts
+      waitDuration: 10000 # The wait duration between the retry attempts
+      retry-exceptions: # The list of exceptions you want to retry
+        - java.util.concurrent.TimeoutException
+
 resilience4j.bulkhead:
   instances:
     bulkheadLicenseService:
