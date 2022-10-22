@@ -5,6 +5,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.optimagrowth.licensing.model.License;
 import com.optimagrowth.licensing.service.LicenseService;
+import com.optimagrowth.licensing.utils.UserContextHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,8 @@ import java.util.concurrent.TimeoutException;
 // Exposes all the HTTP endpoints in this class with a prefix of /v1/organization/{organizationId}/license
 @RequestMapping(value = "v1/organization/{organizationId}/license")
 public class LicenseController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LicenseController.class);
 
     @Autowired
     private LicenseService licenseService;
@@ -77,6 +82,7 @@ public class LicenseController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<License> getLicenses(@PathVariable("organizationId") String organizationId) throws TimeoutException {
+        logger.debug("LicenseServiceController Correlation ID: {}", UserContextHolder.getContext().getCorrelationId());
         return licenseService.getLicensesByOrganization(organizationId);
     }
 }
