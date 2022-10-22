@@ -32,6 +32,13 @@ resilience4j.circuitbreaker:
         - java.util.concurrent.TimeoutException
         - org.springframework.web.client.ResourceAccessException
 
+resilience4j.ratelimiter:
+  instances:
+    licenseService:
+      limitForPeriod: 5 # Defines the number of permissions available during a limit refresh period
+      limitRefreshPeriod: 5000 # Defines the period of a limit refresh
+      timeoutDuration: 1000ms # Defines the time a thread wait for permission
+
 resilience4j.retry:
   instances:
     retryLicenseService:
