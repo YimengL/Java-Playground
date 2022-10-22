@@ -7,6 +7,7 @@ import com.optimagrowth.licensing.repository.LicenseRepository;
 import com.optimagrowth.licensing.service.client.OrganizationDiscoveryClient;
 import com.optimagrowth.licensing.service.client.OrganizationFeignClient;
 import com.optimagrowth.licensing.service.client.OrganizationRestTemplateClient;
+import com.optimagrowth.licensing.utils.UserContextHolder;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
@@ -112,9 +113,10 @@ public class LicenseService {
     @CircuitBreaker(name = "licenseService", fallbackMethod = "buildFallbackLicenseList")
     @RateLimiter(name = "licenseService", fallbackMethod = "buildFallbackLicenseList")
     @Retry(name = "retryLicenseService", fallbackMethod = "buildFallbackLicenseList")
-    @Bulkhead(name = "bulkheadLicenseService", type = Bulkhead.Type.THREADPOOL,
-            fallbackMethod = "buildFallbackLicenseList")
+//    @Bulkhead(name = "bulkheadLicenseService", type = Bulkhead.Type.THREADPOOL,
+//            fallbackMethod = "buildFallbackLicenseListBulkhead")
     public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
+        logger.debug("getLicensesByOrganization Correlation ID: {}", UserContextHolder.getContext().getCorrelationId());
         randomlyRunLong();
         return licenseRepository.findByOrganizationId(organizationId);
     }
