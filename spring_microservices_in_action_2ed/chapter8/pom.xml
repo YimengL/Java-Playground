@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.optimagrowth</groupId>
+	<artifactId>ostock-parent-pom</artifactId>
+	<version>0.8.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>optimagrowth-parent-pom</name>
+	<description>Parent POM for the optimagrowth project</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<docker.image.prefix>rocklee1108</docker.image.prefix>
+	</properties>
+
+	<modules>
+		<module>configserver</module>
+		<module>licensing-service</module>
+		<module>organization-service</module>
+		<module>eurekaserver</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<!-- This plugin is used to create a docker image and publish it to Docker hub-->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

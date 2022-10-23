@@ -1,0 +1,68 @@
+spring:
+  application:
+    # Specifies the name of the licensing service so that Spring Cloud Config client knows which service is being
+    # looked up
+    name: licensing-service # Logical name of the service that will be registered with Eureka
+  profiles:
+    # Specifies the default profile the service should run. The profile maps to an environment.
+    active: dev
+  cloud:
+    config:
+      # Specifies the location of the Spring Cloud Config Server
+      uri: http://configserver:8071
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.optimagrowth: DEBUG
+
+resilience4j.circuitbreaker:
+  instances:
+    # Licensing service instance configuration. (The name given to the circuit breaker in the annotation.)
+    licenseService:
+      # Indicates whether to expose the configuration over the health endpoint
+      registerHealthIndicator: true
+      # Sets the ring buffer size at the closed state
+      ringBufferSizeInClosedState: 5
+      # Set the ring buffer size in the half-open state
+      ringBufferSizeInHalfOpenState: 3
+      # Sets the wait duration for the open state
+      waitDurationInOpenState: 10s
+      # Sets the failure rate threshold percentage
+      failureRateThreshold: 60
+      # Sets the exceptions that should be recorded as failures
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+        - java.util.concurrent.TimeoutException
+        - org.springframework.web.client.ResourceAccessException
+
+resilience4j.ratelimiter:
+  instances:
+    licenseService:
+      limitForPeriod: 5 # Defines the number of permissions available during a limit refresh period
+      limitRefreshPeriod: 5000 # Defines the period of a limit refresh
+      timeoutDuration: 1000ms # Defines the time a thread wait for permission
+
+resilience4j.retry:
+  instances:
+    retryLicenseService:
+      maxRetryAttempts: 5 # The maximum number of retry attempts
+      waitDuration: 10000 # The wait duration between the retry attempts
+      retry-exceptions: # The list of exceptions you want to retry
+        - java.util.concurrent.TimeoutException
+
+resilience4j.bulkhead:
+  instances:
+    bulkheadLicenseService:
+      maxWaitDuration: 10ms # The maximum amount of time to block a thread
+      maxConcurrentCalls: 20 # The maximum number of concurrent calls
+
+resilience4j.thread-pool-bulkhead:
+  instances:
+    bulkheadLicenseService:
+      maxThreadPoolSize: 1 # The maximum number of threads in the thread pool
+      coreThreadPoolSize: 1 # The core thread pool size
+      queueCapacity: 1 # The queue's capacity
+      keepAliveDuration: 20ms

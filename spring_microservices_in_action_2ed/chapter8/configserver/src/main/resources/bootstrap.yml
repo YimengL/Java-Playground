@@ -1,0 +1,30 @@
+spring:
+  application:
+    # The Config Server application name (in this case, config-server)
+    name: config-server
+  profiles:
+    # Maps all the profiles(this is a comma-separated list)
+    # active: native, git
+    active: git
+
+  cloud:
+    config:
+      server:
+        # Local configuration: This locations can either of classpath or locations in the filesystem
+#        native:
+#          # Sets the search location where the configuration files are stored
+#          search-locations: classpath:/config
+        git:
+          uri: https://github.com/YimengL/config.git
+          skipSslValidation: true
+          # searchPaths: licensingservice
+
+server:
+  # The server port
+  port: 8071
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
