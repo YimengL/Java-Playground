@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: gateway-server # Names the gateway service so that the Spring Cloud Config Client knows which service is being looked up
+  cloud:
+    config:
+      uri: http://configserver:8071 # Specifies the location of the Spring Cloud Config Server

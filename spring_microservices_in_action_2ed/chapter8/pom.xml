@@ -24,6 +24,7 @@
 
 	<modules>
 		<module>configserver</module>
+		<module>gatewayserver</module>
 		<module>licensing-service</module>
 		<module>organization-service</module>
 		<module>eurekaserver</module>
