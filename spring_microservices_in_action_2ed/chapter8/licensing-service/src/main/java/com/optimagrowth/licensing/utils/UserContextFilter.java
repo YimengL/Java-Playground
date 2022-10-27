@@ -8,6 +8,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * Registers the filter that's picked up by Spring through {@code @Component} and {@link javax.servlet.Filter} interface
+ * implementation.
+ */
 @Component
 public class UserContextFilter implements Filter {
 
@@ -19,9 +23,9 @@ public class UserContextFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
         // Retrieves the values set in the HTTP header of the call to a UserContext. These are then stored in
         // UserContextHolder.
@@ -32,7 +36,7 @@ public class UserContextFilter implements Filter {
 
         logger.debug("UserContextFilter Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
 
-        chain.doFilter(httpServletRequest, response);
+        filterChain.doFilter(httpServletRequest, servletResponse);
     }
 
     @Override
