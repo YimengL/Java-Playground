@@ -1,0 +1,14 @@
+spring:
+  application:
+    # Name the Eureka service so the Spring Cloud Config client knows which service it's looking up
+    name: eureka-server
+  cloud:
+    config:
+      # Specifies the location of the Spring Cloud Config Server
+      uri: http://configserver:8071
+
+    loadbalancer:
+      ribbon:
+        # Because Ribbon is still the default client-side load balancer, we disabled it using the
+        # loadbalancer.ribbon.enabled configuration.
+        enabled: false
