@@ -12,7 +12,7 @@ public class FilteringApples {
         List<Apple> inventory = Arrays.asList(
                 new Apple(80, Color.GREEN),
                 new Apple(155, Color.GREEN),
-                new Apple(126, Color.RED));
+                new Apple(120, Color.RED));
 
         List<Apple> greenApples = filterApplesByColor(inventory, Color.GREEN);
         System.out.println(greenApples);
@@ -28,6 +28,14 @@ public class FilteringApples {
 
         List<Apple> redAndHeavyApples = filterApples(inventory, new AppleRedAndHeavyPredicate());
         System.out.println(redAndHeavyApples);
+
+        List<Apple> redApples2 = filterApples(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return Color.RED.equals(apple.getColor());
+            }
+        });
+        System.out.println(redApples2);
     }
 
     public static List<Apple> filterGreenApples(List<Apple> inventory) {
