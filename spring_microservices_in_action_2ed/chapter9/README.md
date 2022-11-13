@@ -13,6 +13,15 @@ $ # Set up 2 env variable: ENCRYPT_KEY & POSTGRES_PASSWORD
 $ docker-compose up
 ```
 
+### 3. Create users via `keycloak`
+
+1. Visit localhost:8080/auth
+2. Manage -> Users -> Add User
+3. `yimeng.li`, Enable "Email Verified"
+4. Credentials Tab: `passwerd1`, disable Temporary
+5. Role Mappings, add `offline_access`, `ostkc-admin`, `uma_authorization`
+
+
 ### Check the `Postgres` DB
 
 ```shell
