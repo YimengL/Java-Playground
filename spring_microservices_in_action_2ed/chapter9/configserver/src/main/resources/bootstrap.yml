@@ -4,8 +4,8 @@ spring:
     name: config-server
   profiles:
     # Maps all the profiles(this is a comma-separated list)
-    # active: native, git
-    active: git
+    active: native
+    # active: git
 
   cloud:
     config:
