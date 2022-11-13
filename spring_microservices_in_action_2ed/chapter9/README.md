@@ -22,6 +22,13 @@ $ docker-compose up
 5. Role Mappings, add `offline_access`, `ostkc-admin`, `uma_authorization`
 
 
+### 4. Generate new Client Secret
+
+1. Visit localhost:8080/auth
+2. Clients -> `ostock` -> Credentials
+3. Regenerate Secret
+
+
 ### Check the `Postgres` DB
 
 ```shell
