@@ -11,12 +11,12 @@ spring:
     config:
       server:
         # Local configuration: This locations can either of classpath or locations in the filesystem
-#        native:
-#          # Sets the search location where the configuration files are stored
-#          search-locations: classpath:/config
-        git:
-          uri: https://github.com/YimengL/config.git
-          skipSslValidation: true
+        native:
+          # Sets the search location where the configuration files are stored
+          search-locations: classpath:/config
+#        git:
+#          uri: https://github.com/YimengL/config.git
+#          skipSslValidation: true
           # searchPaths: licensingservice
 
 server:
