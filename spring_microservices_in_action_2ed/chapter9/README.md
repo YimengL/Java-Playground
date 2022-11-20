@@ -17,16 +17,23 @@ $ docker-compose up
 
 1. Visit localhost:8080/auth
 2. Manage -> Users -> Add User
-3. `yimeng.li`, Enable "Email Verified"
-4. Credentials Tab: `passwerd1`, disable Temporary
-5. Role Mappings, add `offline_access`, `ostkc-admin`, `uma_authorization`
-
+   1. "Username": `yimeng.li`
+   2. "Email Verified": `ON`
+   3. Click "Save"
+3. Credentials Tab
+   1. "Password" & "Password Confirmation": `passwerd1`
+   2. Temporary: `OFF`
+   3. Click "Set Password"
+4. Role Mappings Tab
+   1. Select `offline_access`, `ostock-admin`, `uma_authorization` in "Available Roles"
+   2. Click "Add selected"
 
 ### 4. Generate new Client Secret
 
 1. Visit localhost:8080/auth
-2. Clients -> `ostock` -> Credentials
+2. Configure -> Clients -> `ostock` -> Credentials Tab
 3. Regenerate Secret
+4. Copy the secret, paste on Token(http://localhost:8080/auth/realms/spmia-realm/protocol/openid-connect/token) endpoint
 
 
 ### Check the `Postgres` DB
