@@ -17,6 +17,9 @@ public class ExecuteAround {
 
         String oneLine = processFile((BufferedReader b) -> b.readLine());
         System.out.println(oneLine);
+
+        String twoLines = processFile((BufferedReader b) -> b.readLine() + b.readLine());
+        System.out.println(twoLines);
     }
 
     public static String processFileLimited() throws IOException {
