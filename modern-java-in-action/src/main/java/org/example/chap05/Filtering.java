@@ -44,5 +44,27 @@ public class Filtering {
                 .collect(Collectors.toList());
         slicedMenu1.forEach(System.out::println);
 
+        System.out.println("Sorted menu sliced with dropWhile()");
+        List<Dish> slicedMenu2 = specialMenu.stream()
+                .dropWhile(dish -> dish.getCalories() < 320)
+                .collect(Collectors.toList());
+        slicedMenu2.forEach(System.out::println);
+
+        // Truncating a stream
+        List<Dish> dishesLimit3 = Dish.menu.stream()
+                .filter(d -> d.getCalories() > 300)
+                .limit(3)
+                .collect(Collectors.toList());
+        System.out.println("Truncating a stream:");
+        dishesLimit3.forEach(System.out::println);
+
+        // Skipping elements
+        List<Dish> dishesSkip2 = Dish.menu
+                .stream()
+                .filter(d -> d.getCalories() > 300)
+                .skip(2)
+                .collect(Collectors.toList());
+        System.out.println("Skipping elements:");
+        dishesSkip2.forEach(System.out::println);
     }
 }
