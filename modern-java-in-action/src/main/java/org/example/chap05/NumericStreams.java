@@ -4,6 +4,7 @@ import org.example.chap04.Dish;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalInt;
 
 public class NumericStreams {
     public static void main(String[] args) {
@@ -15,5 +16,16 @@ public class NumericStreams {
                 .mapToInt(Dish::getCalories)
                 .sum();
         System.out.println("Number of calories: " + calories);
+
+        // max and OptionalInt
+        OptionalInt maxCalories = Dish.menu.stream()
+                .mapToInt(Dish::getCalories)
+                .max();
+        // Provides an explicit default maximum if there's no value
+        int max = maxCalories.orElse(1);
+        System.out.println(max);
+
+        // numeric ranges
+
     }
 }
