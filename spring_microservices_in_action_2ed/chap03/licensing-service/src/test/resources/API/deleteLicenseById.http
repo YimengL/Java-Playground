@@ -1,0 +1,4 @@
+@organizationId = optimaGrowth
+@licenseId = 0235431845
+DELETE http://localhost:8080/v1/organization/{{organizationId}}/license/{{licenseId}}
+Accept: application/json
