@@ -3,6 +3,7 @@
 POST http://localhost:8080/v1/organization/{{organizationId}}/license
 Accept: application/json
 Content-Type: application/json
+Accept-Language: es
 
 {
   "licenseId": "0235431845",
