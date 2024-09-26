@@ -3,12 +3,14 @@ package mjia.ch02;
 import java.util.ArrayList;
 import java.util.List;
 
+import static mjia.ch02.FilteringApples.Color.RED;
+
 public class FilteringApples {
     public static void main(String[] args) {
         List<Apple> inventory = List.of(
                 new Apple(80, Color.GREEN),
                 new Apple(155, Color.GREEN),
-                new Apple(120, Color.RED)
+                new Apple(120, RED)
         );
 
         // Apple{color='GREEN', weight=80}, Apple{color='GREEN', weight=155}
@@ -16,12 +18,29 @@ public class FilteringApples {
         System.out.println(greenApples);
 
         // Apple{color='RED', weight=120}
-        List<Apple> redApples = filterApplesByColor(inventory, Color.RED);
+        List<Apple> redApples = filterApplesByColor(inventory, RED);
         System.out.println(redApples);
 
         // Apple{color='GREEN', weight=80}, Apple{color='GREEN', weight=155}
         List<Apple> greenApples2 = filter(inventory, new AppleGreenColorPredicate());
         System.out.println(greenApples2);
+
+        // Apple{color='GREEN', weight=155}]
+        List<Apple> heavyApples = filter(inventory, new AppleHeavyWeightPredicate());
+        System.out.println(heavyApples);
+
+        // []
+        List<Apple> redAndHeavyApples = filter(inventory, new AppleRedAndHeavyPredicate());
+        System.out.println(redAndHeavyApples);
+
+        // Apple{color='RED', weight=120}]
+        List<Apple> redApples2 = filter(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return RED.equals(apple.getColor());
+            }
+        });
+        System.out.println(redApples2);
     }
 
     public static List<Apple> filterGreenApples(List<Apple> inventory) {
@@ -114,6 +133,14 @@ public class FilteringApples {
         @Override
         public boolean test(Apple apple) {
             return Color.GREEN.equals(apple.getColor());
+        }
+    }
+
+    static class AppleRedAndHeavyPredicate implements ApplePredicate {
+
+        @Override
+        public boolean test(Apple apple) {
+            return RED.equals(apple.getColor()) && apple.getWeight() > 150;
         }
     }
 
