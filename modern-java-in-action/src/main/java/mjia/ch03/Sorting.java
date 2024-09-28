@@ -45,9 +45,6 @@ public class Sorting {
         // [Apple{color=RED, weight=10}, Apple{color=RED, weight=20}, Apple{color=GREEN, weight=155}]
         inventory.sort(Comparator.comparing(Apple::getWeight));
         System.out.println(inventory);
-
-
-
     }
 
 
