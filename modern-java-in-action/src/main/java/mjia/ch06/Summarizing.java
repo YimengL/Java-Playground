@@ -16,6 +16,7 @@ public class Summarizing {
         System.out.println("Average calories in menu: " + calculateAverageCalories());
         System.out.println("Menu statistics: " + calculateMenuStatistics());
         System.out.println("Short menu: " + getShortMenu());
+        System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
     }
 
     private static long howManyDishes() {
@@ -45,5 +46,9 @@ public class Summarizing {
 
     private static String getShortMenu() {
         return Dish.menu.stream().map(Dish::getName).collect(Collectors.joining());
+    }
+
+    private static String getShortMenuCommaSeparated() {
+        return Dish.menu.stream().map(Dish::getName).collect(joining(", "));
     }
 }
