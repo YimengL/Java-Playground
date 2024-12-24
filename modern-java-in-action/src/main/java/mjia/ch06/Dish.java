@@ -61,7 +61,7 @@ public class Dish {
         dishTags.put("pork", Arrays.asList("greasy", "salty"));
         dishTags.put("beef", Arrays.asList("salty", "roasted"));
         dishTags.put("chicken", Arrays.asList("fried", "crisp"));
-        dishTags.put("fresh fries", Arrays.asList("greasy", "fried"));
+        dishTags.put("french fries", Arrays.asList("greasy", "fried"));
         dishTags.put("rice", Arrays.asList("light", "natural"));
         dishTags.put("season fruit", Arrays.asList("fresh", "natural"));
         dishTags.put("pizza", Arrays.asList("tasty", "salty"));
