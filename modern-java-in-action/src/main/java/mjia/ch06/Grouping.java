@@ -1,8 +1,6 @@
 package mjia.ch06;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Grouping {
@@ -16,7 +14,8 @@ public class Grouping {
         System.out.println("Caloric dishes grouped by type: " + groupCaloricDishesByType());
         System.out.println("Dishes grouped by caloric level: " + groupDishesByCaloricLevel());
         System.out.println("Dishes grouped by type and caloric level: " + groupDishesByTypeAndCaloricLevel());
-
+        System.out.println("Count dishes in groups: " + countDishesInGroups());
+        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByType());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType() {
@@ -67,5 +66,14 @@ public class Grouping {
                             }
                         }))
         );
+    }
+
+    private static Map<Dish.Type, Long> countDishesInGroups() {
+        return Dish.menu.stream().collect(Collectors.groupingBy(Dish::getType, Collectors.counting()));
+    }
+
+    private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByType() {
+        return Dish.menu.stream().collect(
+                Collectors.groupingBy(Dish::getType, Collectors.maxBy(Comparator.comparingInt(Dish::getCalories))));
     }
 }
