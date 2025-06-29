@@ -53,3 +53,13 @@ $ kubectl delete service catalog-service
 $ kubectl delete deployment catalog-service
 ```
 
+#### Run the service locally
+
+```shell
+# package the application as a jar file
+$ ./gradlew bootJar
+
+# run the application
+$ java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+```
+
