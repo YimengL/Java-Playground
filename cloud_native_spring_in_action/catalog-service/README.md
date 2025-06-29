@@ -68,5 +68,6 @@ $ ./gradlew bootRun
 # Run unit tests, integration tests
 $ ./gradlew test --tests BookValidationTests
 $ ./gradlew test --tests CatalogServiceApplicationTests
+$ ./gradlew test --tests BookControllerMvcTest
 ```
 
