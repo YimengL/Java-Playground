@@ -65,7 +65,8 @@ $ java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
 # Run the application
 $ ./gradlew bootRun
 
-# Run unit tests
+# Run unit tests, integration tests
 $ ./gradlew test --tests BookValidationTests
+$ ./gradlew test --tests CatalogServiceApplicationTests
 ```
 
