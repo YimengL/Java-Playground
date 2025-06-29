@@ -61,5 +61,8 @@ $ ./gradlew bootJar
 
 # run the application
 $ java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+
+# Run the application
+$ ./gradlew bootRun
 ```
 
