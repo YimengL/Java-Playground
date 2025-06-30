@@ -69,5 +69,6 @@ $ ./gradlew bootRun
 $ ./gradlew test --tests BookValidationTests
 $ ./gradlew test --tests CatalogServiceApplicationTests
 $ ./gradlew test --tests BookControllerMvcTest
+$ ./gradlew test --tests BookJsonTests
 ```
 
