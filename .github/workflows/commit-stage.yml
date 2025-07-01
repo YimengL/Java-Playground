@@ -26,6 +26,19 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: gradle
+            - name: Code vulnerability scanning
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          path: ${{ matrix.project }} # Path to the project directory
+          fail-build: false # Whether to fail the build in the event of security vulnerabilities
+          severity-cutoff: high
+          acs-report-enable: true
+      - name: Upload vulnerability report
+        uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }} # Fetches the report from the output of the previous step
       - name: Build, unit tests and integration tests
         run: |
           cd ${{ matrix.project }}
